@@ -29,13 +29,14 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs",
     "iron-component-page": "PolymerElements/iron-component-page",
     "iron-flex-layout": "PolymerElements/iron-flex-layout",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers"
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers",
+    "iron-form": "PolymerElements/iron-form"
   },
-  "_release": "31a1276802",
+  "_release": "2e4fc8f657",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "31a1276802b1a805a4c718d704e30f2e5a4ce969"
+    "commit": "2e4fc8f657465bcb00a64196170c07cf311f93c5"
   },
   "_source": "https://github.com/fooloomanzoo/datetime-input.git",
   "_target": "master",
