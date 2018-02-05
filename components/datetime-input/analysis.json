@@ -917,9 +917,6 @@
             },
             {
               "name": "milliseconds"
-            },
-            {
-              "name": "offsetMinutes"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -946,9 +943,6 @@
             },
             {
               "name": "time"
-            },
-            {
-              "name": "timezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -2995,9 +2989,6 @@
             },
             {
               "name": "milliseconds"
-            },
-            {
-              "name": "offsetMinutes"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -3024,9 +3015,6 @@
             },
             {
               "name": "time"
-            },
-            {
-              "name": "timezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -5119,9 +5107,6 @@
             },
             {
               "name": "milliseconds"
-            },
-            {
-              "name": "offsetMinutes"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -5148,9 +5133,6 @@
             },
             {
               "name": "time"
-            },
-            {
-              "name": "timezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -7200,9 +7182,6 @@
             },
             {
               "name": "milliseconds"
-            },
-            {
-              "name": "offsetMinutes"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
@@ -7229,9 +7208,6 @@
             },
             {
               "name": "time"
-            },
-            {
-              "name": "timezoneOffset"
             }
           ],
           "inheritedFrom": "DatetimeMixin"
