@@ -168,6 +168,13 @@
           },
 
           /**
+           * minimum character width of the input
+           */
+          minlength: {
+            type: Number
+          },
+
+          /**
            * minimum digits left to the decimal separator to pad
            * @type {number}
            */
@@ -183,7 +190,7 @@
            */
           _longestStaticLength: {
             type: Number,
-            computed: '_computeLongestStatic(alwaysSign, minimumIntegerDigits, minimumFractionDigits)',
+            computed: '_computeLongestStatic(minlength, alwaysSign, minimumIntegerDigits, minimumFractionDigits)',
             observer: '_updateView'
           },
 
@@ -209,11 +216,13 @@
         super.connectedCallback();
         this._ensureAttribute('tabindex', 0);
         this.addEventListener('focus', this.focus.bind(this), false);
+        this.addEventListener('contextmenu', this._stopIncrem.bind(this), false);
       }
 
       disconnectedCallback() {
         super.disconnectedCallback();
         this.removeEventListener('focus', this.focus.bind(this), false);
+        this.removeEventListener('contextmenu', this._stopIncrem.bind(this), false);
       }
 
       _computeMinimumIntegerDigits(autoPadding, padLength, min, max) {
@@ -228,8 +237,8 @@
         return 1;
       }
 
-      _computeLongestStatic(alwaysSign, minimumIntegerDigits) {
-        return this._computeChWidth((!alwaysSign && (this.min < 0 || this.max < 0) ? '-' : '') + this.formatNumber(Math.pow(10, minimumIntegerDigits - 1)));
+      _computeLongestStatic(minlength, alwaysSign, minimumIntegerDigits) {
+        return Math.max(minlength || 1, this._computeChWidth((!alwaysSign && (this.min < 0 || this.max < 0) ? '-' : '') + this.formatNumber(Math.pow(10, minimumIntegerDigits - 1))));
       }
 
       // approximation of the ch-width of a number-string
@@ -259,8 +268,10 @@
 
       _inputChanged(input, oldinput) {
         if (!input) {
-          if (oldinput) {
-            this._inputChanged(oldinput);
+          if (!isNaN(this.default)) {
+            this.input = '' + this.default;
+          } else {
+            this.$.input.value = '';
           }
           return;
         }
@@ -292,7 +303,14 @@
       }
 
       _valueChanged(value, oldValue) {
-        if (value === undefined) return;
+        if (value === undefined) {
+          if (!isNaN(this.default)) {
+            this.value = this.default;
+          } else {
+            this.input = undefined;
+          }
+          return
+        }
 
         if (isNaN(oldValue)) {
           value = this._checkValue(value);
@@ -353,14 +371,18 @@
         let value = parseInt(this.$.input.value.replace(this._regExpNotInNumber, '')) + step;
         if (isNaN(value)) {
           if (!isNaN(this.startAt)) {
-            value = this.startAt;
+            this.value = this.startAt;
           } else if (!isNaN(this.default)) {
-            value = this.default;
+            this.value = this.default;
           } else {
-            value = this.min < 0 ? 0 : this.min || 0;
+            this.value = this.min < 0 ? 0 : this.min || 0;
           }
+        } else if (this.noClamp){
+          // still clamp to step, when incrementing
+          this.value = this._checkStep(this._checkValue(value, this.value), this.step);
+        } else {
+          this.value = this._checkValue(value, this.value);
         }
-        this.value = this._checkValue(value, this.value);
       }
 
       _updateView() {
