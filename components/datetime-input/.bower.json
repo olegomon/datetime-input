@@ -32,11 +32,11 @@
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers",
     "iron-form": "PolymerElements/iron-form"
   },
-  "_release": "9185cfc215",
+  "_release": "127f0aa14b",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "9185cfc2156daddb0eb30b2e2faf25a3c05b510c"
+    "commit": "127f0aa14b3715583ba80090ba60fe9770b39590"
   },
   "_source": "https://github.com/fooloomanzoo/datetime-input.git",
   "_target": "master",
